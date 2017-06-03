@@ -1,6 +1,6 @@
 # Building first Containerized java image
 This is my first ever Docker image containing java libraries and a simple java program to print Pyramid of Asterisks!
-Before diving deep into creating images and containers. If you want to try it without installing anything, then go to [pwd](https://labs.play-with-docker.com) site and create a new instance.
+Before diving deep into creating images and containers. If you want to try it without installing anything, then go to [pwd](labs.play-with-docker.com) site and create a new instance.
 
 I already built my java image and uploaded it to Docker Hub repository.
 So, first we'll pull the image from the Docker repository and then create containers out of it.
