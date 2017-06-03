@@ -1,11 +1,34 @@
 # Building first Containerized java image
+This is my first ever Docker image containing java libraries and a simple java program to print Pyramid of Asterisks!
+Before diving deep into creating images and containers. If you want to try it without installing anything, then go to [pwd](https://labs.play-with-docker.com) site and create a new instance.
 
-In order to build our java image, we'll be needing two files :
+I already built my java image and uploaded it to Docker Hub repository.
+So, first we'll pull the image from the Docker repository and then create containers out of it.
+
+#### Command to pull docker image from docker hub :
+```sh
+$ docker image pull erganeshsharma/java-sample
+or
+$ docker pull erganeshsharma/java-sample
+```
+#### Command to build container based on above image :
+```sh
+$ docker container run --name your-container-name erganeshsharma/java-sample
+or
+$ docker run --name your-container-name erganeshsharma/java-sample
+```
+
+That's it, these two commands will pull the image from the Docker Hub and then creates an instance of the pulled image as a container. Runs it on the terminal and you'll see a simple pyramid of asterisks as a output on the terminal.
+As you can see, with just two commands you are able to create a container having all the java libraries and the application which prints a simple Pyramid of Stars on the terminal upon execution.
+
+So, if you want to follow step by step to crete your own java image, then follow the given instruction below :
+
+In order to build a java image, we'll be needing two files :
 - Dockerfile
 - Main.java
 
 Here we'll be using *Dockerfile* to create the image containing of a *Main.java* file in it.
-### Step 1: Creating the files.
+## Step 1: Creating the files.
 
 Create a new directory.
 ```sh
@@ -57,7 +80,7 @@ public class Main {
 }
 ```
 Now as we have got both the files in the same directory, lets create the image now.
-### Step 2 : Creating the image.
+## Step 2 : Creating the image.
 #### Use the following command to build the image : 
 ```sh
 $ docker image build -t your-image-name .
@@ -106,7 +129,7 @@ $ docker image inspect --format "{{ json .Author }}" your-image-name | python -m
 So this way you can extract other details as well from the image.
 
 Now let's create a container, which will be an instance of your image.
-### Step 3 : Creating the Container.
+## Step 3 : Creating the Container.
 #### Use the following command to create the container : 
 ```sh
 $ docker container run --name your-container-name your-image-name
@@ -159,7 +182,7 @@ $ docker inspect --format "{{ json .Config.Image }}" your-container-name | pytho
 ```
 The above command will display the name of the Image from which the container was instantiated.
 
-### Step 4 : Clean Up
+## Step 4 : Clean Up
 Now let's see how to delete the containers and the images.
 
 Deleting Images will give you an error message, if there are some running containers based on these images. So first we need to stop those containers and then delete the containers and the parent images.
@@ -220,6 +243,7 @@ or
 $ docker rmi your-image-id
 ```
 #### Commands to forcefully delete all images on a host :
+
 ```sh
 $ docker image rm -f $(docker images -aq)
 or
@@ -236,6 +260,25 @@ $ docker container ls -a
 ```
 You'll see that, there are no images and containers, as all are deleted.
 
+#### Uploading your image to Docker Hub :
+
+If you want to upload your image to your repository on Docker Hub, so that the image can be pulled anywhere then follow the given instruction :
+- Open your account on [Docker Hub](https://hub.docker.com/) if you haven't already.
+- Login to your Docker Hub using :
+  ```sh
+  $ docker login
+  ```
+- Tag your image to your-dockerhub-username/image-name:tag
+  ```sh
+  $ docker image tag your-image-name your-dockerhub-username/image-name
+  ```
+- Push your newly taged image to the Docker Hub repository.
+  ```sh
+  $ docker push your-dockerhub-username/image-name
+  ```
+Now your image is on Docker Hub, which is the default repository for Docker images.
+Now you can pull your image from Docker Hub to create containers.
+
 #### For further study about the various docker commands, use :
 
 - Mannuals on terminal like
@@ -246,3 +289,5 @@ You'll see that, there are no images and containers, as all are deleted.
   $ docker image build --help
   ```
 - Official Documentation [here](https://docs.docker.com/) 
+
+
