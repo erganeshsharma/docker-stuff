@@ -27,7 +27,7 @@ In order to build a java image, we'll be needing two files :
 - Dockerfile
 - Main.java
 
-Here we'll be using *Dockerfile* to create the image containing of a *Main.java* file in it.
+Here we'll be using `Dockerfile` to create the image containing of a `Main.java` file in it.
 ## Step 1: Creating the files.
 
 Create a new directory.
@@ -38,7 +38,7 @@ Change to that directory.
 ```sh
 $ cd java-sample
 ```
-Create a file called *Dockerfile* and add the following code into it.
+Create a file called `Dockerfile` and add the following code into it.
 ```sh
 # Use an official openjdk image with an alpine flavor as a base image
 FROM openjdk:alpine
@@ -58,25 +58,25 @@ RUN javac Main.java
 # Run the compiled java program when the container launches
 CMD ["java", "Main"]
 ```
-Now create a new file called *Main.java* in the same directory and add the following code into it.
+Now create a new file called `Main.java` in the same directory and add the following code into it.
 ```sh
 import java.io.*;
 public class Main {
-	public static void main(String args[]){
+  public static void main(String args[]){
 
-		System.out.println("Printing pyramid of stars!\n");
-		int i,j,k;
+    System.out.println("Printing pyramid of stars!\n");
+    int i,j,k;
 
-		for (i=1; i<=10; i++){
-			for (j=10; j>=i; j--)
-				System.out.print(" ");
-			for (k=1; k<=i; k++)
-				System.out.print("* ");
-			System.out.println("");
-		}
+    for (i=1; i<=10; i++){
+      for (j=10; j>=i; j--)
+        System.out.print(" ");
+      for (k=1; k<=i; k++)
+        System.out.print("* ");
+      System.out.println("");
+    }
 
-		System.out.println("\n....... Done .......");
-	}
+    System.out.println("\n....... Done .......");
+  }
 }
 ```
 Now as we have got both the files in the same directory, lets create the image now.
@@ -87,7 +87,7 @@ $ docker image build -t your-image-name .
 or
 $ docker build -t your-image-name .
 ```
-Please don't forget to add a . (dot) at the end.
+Please don't forget to add a `.` (dot) at the end.
 
 #### If you get errors like *permission denied*, try it again using *sudo* like
 ```sh
@@ -96,7 +96,7 @@ $ sudo docker image build -t your-image-name .
 or
 $ sudo docker build -t your-image-name .
 ```
-On terminal, Docker automatically detects whether you are working with containers or images, so it's not neccessary to include *image* or *container* in your commands. But I stick to it and use it where ever it fits to make my code more readable and easy to debug.
+On terminal, Docker automatically detects whether you are working with containers or images, so it's not neccessary to include `image` or `container` in your commands. But I stick to it and use it where ever it fits to make my code more readable and easy to debug.
 
 #### Now you can check your image by listing all the images:
 ```sh
@@ -104,13 +104,13 @@ $ docker image ls
 or 
 $ docker images
 ```
-#### If the list is too long, containing all of your images. You can use *grep* to get the required image only.
+#### If the list is too long, containing all of your images. You can use `grep` to get the required image only.
 ```sh
 $ docker image ls | grep your-image-name
 or
 $ docker images | grep your-image-name
 ```
-You'll get details about the image like - *Name*, *Tag*, *ID*, *Time*, and most importantly *Size*.
+You'll get details about the image like - `Name`, `Tag`, `ID`, `Time`, and most importantly `Size`.
 
 #### If you are interested to know more about the image, you can try the following command:
 ```sh
@@ -118,7 +118,7 @@ $ docker image inspect your-image-name
 or
 $ docker inspect your-image-name
 ```
-You'll get a detailed information about the image. It's a lot of information, what if you need only the author name of the image, well you can do that as well using *go template* or *json*.
+You'll get a detailed information about the image. It's a lot of information, what if you need only the author name of the image, well you can do that as well using `go template` or `json`.
 
 #### Here is an example to get the *Author* details of an image : 
 ```sh
@@ -137,7 +137,7 @@ or
 $ docker run --name your-container-name your-image-name
 ```
 Now, you must have seen a Pyramid of Stars! on your terminal.
-As our container has a *Java* program which on running prints a *Pyramid of Stars!*.
+As our container has a `Java` program which on running prints a `Pyramid of Stars!`.
 
 So, congratulations we have successfully created a container, which on running prints an output on our terminal and then exit.
 
@@ -262,17 +262,17 @@ You'll see that, there are no images and containers, as all are deleted.
 
 #### Uploading your image to Docker Hub :
 
-If you want to upload your image to your repository on Docker Hub, so that the image can be pulled anywhere then follow the given instruction :
+If you want to upload your image to your repository on `Docker Hub`, so that the image can be pulled anywhere then follow the given instruction :
 - Open your account on [Docker Hub](https://hub.docker.com/) if you haven't already.
 - Login to your Docker Hub using :
   ```sh
   $ docker login
   ```
-- Tag your image to your-dockerhub-username/image-name:tag
+- `Tag` your image to `your-dockerhub-username/image-name:tag`
   ```sh
   $ docker image tag your-image-name your-dockerhub-username/image-name
   ```
-- Push your newly taged image to the Docker Hub repository.
+- `Push` your newly taged image to the `Docker Hub` repository.
   ```sh
   $ docker push your-dockerhub-username/image-name
   ```
@@ -289,5 +289,3 @@ Now you can pull your image from Docker Hub to create containers.
   $ docker image build --help
   ```
 - Official Documentation [here](https://docs.docker.com/) 
-
-
